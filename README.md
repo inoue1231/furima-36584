@@ -9,12 +9,12 @@
 | name                 | string | null: false |
 | name_kanji           | text   | null: false |
 | name_kana            | text   | null: false |
-| birthday             | text   | null: false |
+| birth_date           | date   | null: false |
 
 ### Association
 
 - has_many : items
-- has_many : purchase
+- has_many : purchases
 
 ## items テーブル
 
@@ -23,7 +23,7 @@
 | name        | string     | null: false                    |
 | profile     | text       | null: false                    |
 | category    | text       | null: false                    |
-| status      | text       | null: false                    |
+| status_id   | integer    | null: false                    |
 
 
 ### Association
@@ -31,25 +31,36 @@
 - belongs_to :user
 - has_many :purchase
 
-## purchase テーブル
 
-| Column        | Type       | Options                        |
-| ------------  | ---------- | ------------------------------ |
-| Shipping area | text       | null: false                    |
-| bear          | text       | null: false                    |
-| days          | text       | null: false                    |
-| price         | text       | null: false                    |
-| number        | text       | null: false                    |
-| Deadline      | text       | null: false                    |
-| security code | text       | null: false                    |
-| Prefecture    | text       | null: false                    |
-| Deadline      | text       | null: false                    |
-| municipalities| text       | null: false                    |
-| address       | text       | null: false                    |
-| Building name | text       | null: false                    |
+## address テーブル
+
+| Column           | Type       | Options                        |
+| ------------     | ---------- | ------------------------------ |
+| shipping area_id | integer    | null: false                    |
+| prefecture       | text       | null: false                    |
+| municipalities   | text       | null: false                    |
+| address          | text       | null: false                    |
+| building name    | text       | null: false                    |
 
 
 ### Association
 
-- belongs_to :prototype
+- has_many :items
+- has_many :purchases
+
+
+## purchase テーブル
+
+| Column        | Type       | Options                        |
+| ------------  | ---------- | ------------------------------ |
+| charge_id     | integer    | null: false                    |
+| days_id       | integer    | null: false                    |
+| price         | text       | null: false                    |
+| number        | text       | null: false                    |
+| Deadline      | text       | null: false                    |
+| security code | text       | null: false                    |
+
+### Association
+
+- has_many :address
 - belongs_to :user
