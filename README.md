@@ -6,33 +6,37 @@
 | ------------------   | ------ | ----------- |
 | email                | string | null: false |
 | encyrpted_password   | string | null: false |
+| myouji               | string | null: false |
 | name                 | string | null: false |
-| name_kanji           | text   | null: false |
-| name_kana            | text   | null: false |
+| myouji_kana          | string | null: false |
+| name_kana            | string | null: false |
 | birth_date           | date   | null: false |
 
 ### Association
 
-- has_many : items
 - has_many : purchases
+- has_many : addresses 
 
 ## items テーブル
 
-| Column      | Type       | Options                        |
-| ----------  | ---------- | ------------------------------ |
-| name        | string     | null: false                    |
-| profile     | text       | null: false                    |
-| category    | text       | null: false                    |
-| status_id   | integer    | null: false                    |
+| Column              | Type       | Options                        |
+| ----------          | ---------- | ------------------------------ |
+| name                | string     | null: false                    |
+| profile             | text       | null: false                    |
+| category            | text       | null: false                    |
+| status_id           | integer    | null: false                    |
+| shippingcharges_id  | integer    | null: false                    |
+| daystoship_id       | integer    | null: false                    |
+| price               | text       | null: false                    |
 
 
 ### Association
 
-- belongs_to :user
-- has_many :purchase
+- has_many : addresses 
+- has_one:purchase
 
 
-## address テーブル
+## addresses テーブル
 
 | Column           | Type       | Options                        |
 | ------------     | ---------- | ------------------------------ |
@@ -41,26 +45,25 @@
 | municipalities   | text       | null: false                    |
 | address          | text       | null: false                    |
 | building name    | text       | null: false                    |
+| postal code      | text       | null: false                    |
+| telephone number | text       | null: false                    |
 
 
 ### Association
 
 - has_many :items
-- has_many :purchases
+- has_one:user
 
 
-## purchase テーブル
+## purchases テーブル
 
 | Column        | Type       | Options                        |
 | ------------  | ---------- | ------------------------------ |
-| charge_id     | integer    | null: false                    |
-| days_id       | integer    | null: false                    |
-| price         | text       | null: false                    |
-| number        | text       | null: false                    |
-| Deadline      | text       | null: false                    |
-| security code | text       | null: false                    |
+| user          | references | null: false, foreign_key: true |
+| item          | references | null: false, foreign_key: true |
+
 
 ### Association
 
-- has_many :address
+- has_many :items
 - belongs_to :user
