@@ -15,7 +15,7 @@
 ### Association
 
 - has_many : purchases
-- has_many : addresses 
+- has_many : items
 
 ## items テーブル
 
@@ -23,16 +23,17 @@
 | ----------          | ---------- | ------------------------------ |
 | name                | string     | null: false                    |
 | profile             | text       | null: false                    |
-| category            | text       | null: false                    |
+| category_id         | integer    | null: false                    |
 | status_id           | integer    | null: false                    |
+| shipping area_id    | integer    | null: false                    |
 | shippingcharges_id  | integer    | null: false                    |
 | daystoship_id       | integer    | null: false                    |
-| price               | text       | null: false                    |
+| price_id            | integer    | null: false                    |
 
 
 ### Association
 
-- has_many : addresses 
+- has_one: user
 - has_one:purchase
 
 
@@ -40,19 +41,17 @@
 
 | Column           | Type       | Options                        |
 | ------------     | ---------- | ------------------------------ |
-| shipping area_id | integer    | null: false                    |
-| prefecture       | text       | null: false                    |
-| municipalities   | text       | null: false                    |
-| address          | text       | null: false                    |
-| building name    | text       | null: false                    |
-| postal code      | text       | null: false                    |
-| telephone number | text       | null: false                    |
-
+| municipalities   | string     | null: false                    |
+| address          | string     | null: false                    |
+| building name    | string     |                                |
+| postal code      | string     | null: false                    |
+| telephone number | string     | null: false                    |
+| purchase         | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_many :items
-- has_one:user
+- has_many :purchase
+
 
 
 ## purchases テーブル
@@ -65,5 +64,5 @@
 
 ### Association
 
-- has_many :items
+- has_many :addresses
 - belongs_to :user
