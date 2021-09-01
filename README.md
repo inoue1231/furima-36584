@@ -1,24 +1,55 @@
-# README
+# デーアタベース設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column               | Type   | Options     |
+| ------------------   | ------ | ----------- |
+| email                | string | null: false |
+| encyrpted_password   | string | null: false |
+| name                 | string | null: false |
+| name_kanji           | text   | null: false |
+| name_kana            | text   | null: false |
+| birthday             | text   | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many : items
+- has_many : purchase
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column      | Type       | Options                        |
+| ----------  | ---------- | ------------------------------ |
+| name        | string     | null: false                    |
+| profile     | text       | null: false                    |
+| category    | text       | null: false                    |
+| status      | text       | null: false                    |
 
-* Database initialization
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :user
+- has_many :purchase
 
-* Deployment instructions
+## purchase テーブル
 
-* ...
+| Column        | Type       | Options                        |
+| ------------  | ---------- | ------------------------------ |
+| Shipping area | text       | null: false                    |
+| bear          | text       | null: false                    |
+| days          | text       | null: false                    |
+| price         | text       | null: false                    |
+| number        | text       | null: false                    |
+| Deadline      | text       | null: false                    |
+| security code | text       | null: false                    |
+| Prefecture    | text       | null: false                    |
+| Deadline      | text       | null: false                    |
+| municipalities| text       | null: false                    |
+| address       | text       | null: false                    |
+| Building name | text       | null: false                    |
+
+
+### Association
+
+- belongs_to :prototype
+- belongs_to :user
