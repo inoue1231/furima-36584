@@ -2,20 +2,20 @@
 
 ## users テーブル
 
-| Column               | Type   | Options     |
-| ------------------   | ------ | ----------- |
-| email                | string | unique: true|
-| encyrpted_password   | string | null: false |
-| nickname             | string | null: false |
-| myouji               | string | null: false |
-| name                 | string | null: false |
-| myouji_kana          | string | null: false |
-| name_kana            | string | null: false |
-| birth_date           | date   | null: false |
+| Column               | Type   | Options     　　　　　　　　|
+| ------------------   | ------ | ----------- 　　　　　　　　|
+| email                | string | unique: true  null: false|
+| encyrpted_password   | string | null: false              |
+| nickname             | string | null: false              |
+| myouji               | string | null: false              |
+| name                 | string | null: false              |
+| myouji_kana          | string | null: false              |
+| name_kana            | string | null: false              |
+| birth_date           | date   | null: false              |
 
 ### Association
 
-- has_one  : address
+- has_one  : purchase
 - has_many : items
 
 ## items テーブル
@@ -36,7 +36,7 @@
 ### Association
 
 - belongs_to: user
-- has_one:purchase
+
 
 
 ## addresses テーブル
@@ -54,7 +54,7 @@
 ### Association
 
 - belongs_to :purchase
-- belongs_to :user
+
 
 
 
