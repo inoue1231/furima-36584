@@ -1,4 +1,4 @@
-# デーアベース設計
+# データベース設計
 
 ## users テーブル
 
@@ -37,7 +37,7 @@
 ### Association
 
 - belongs_to: user
-- has_one: purchases
+- has_one: purchase
 
 
 
