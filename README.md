@@ -1,4 +1,4 @@
-# デーアタベース設計
+# デーアベース設計
 
 ## users テーブル
 
@@ -16,7 +16,7 @@
 ### Association
 
 - has_many  : purchases
-- has_many  : users
+- has_many  : items
 
 
 ## items テーブル
@@ -37,7 +37,7 @@
 ### Association
 
 - belongs_to: user
-- belongs_to: purchases
+- has_one: purchases
 
 
 
@@ -70,6 +70,6 @@
 
 ### Association
 
-- belongs_to :address
+- has_one :address
 - belongs_to :user
 - belongs_to :item
