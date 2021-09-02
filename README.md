@@ -6,6 +6,7 @@
 | ------------------   | ------ | ----------- |
 | email                | string | unique: true|
 | encyrpted_password   | string | null: false |
+| nickname             | string | null: false |
 | myouji               | string | null: false |
 | name                 | string | null: false |
 | myouji_kana          | string | null: false |
@@ -14,7 +15,7 @@
 
 ### Association
 
-- has_many : purchases
+- has_one  : address
 - has_many : items
 
 ## items テーブル
@@ -26,9 +27,9 @@
 | category_id         | integer    | null: false                    |
 | status_id           | integer    | null: false                    |
 | shippingarea_id     | integer    | null: false                    |
-| shippingcharge_id  | integer    | null: false                    |
+| shippingcharge_id   | integer    | null: false                    |
 | daystoship_id       | integer    | null: false                    |
-| price　　　          | int        | null: false                    |
+| price_id　　　       | integer    | null: false                    |
 | user                | references | null: false, foreign_key: true |
 
 
@@ -53,7 +54,7 @@
 ### Association
 
 - belongs_to :purchase
-
+- belongs_to :user
 
 
 
@@ -67,6 +68,6 @@
 
 ### Association
 
-- has_one :address
-- has_one :items
+
+- belongs_to :address
 - belongs_to :user
