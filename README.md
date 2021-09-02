@@ -15,7 +15,8 @@
 
 ### Association
 
-- has_many  : purchase
+- has_many  : purchases
+- has_many  : users
 
 
 ## items テーブル
@@ -29,13 +30,14 @@
 | shippingarea_id     | integer    | null: false                    |
 | shippingcharge_id   | integer    | null: false                    |
 | daystoship_id       | integer    | null: false                    |
-| price_id　　　       | integer    | null: false                    |
+| price   　　　       | integer    | null: false                    |
 | user                | references | null: false, foreign_key: true |
 
 
 ### Association
 
-- belongs_to: item
+- belongs_to: user
+- belongs_to: purchases
 
 
 
@@ -68,6 +70,6 @@
 
 ### Association
 
-- belongs_to :item
 - belongs_to :address
 - belongs_to :user
+- belongs_to :item
