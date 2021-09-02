@@ -5,7 +5,7 @@
 | Column               | Type   | Options     |
 | ------------------   | ------ | ----------- |
 | email                | string | null: false |
-| encyrpted_password   | string | null: false |
+| encyrpted_password   | string | unique: true|
 | myouji               | string | null: false |
 | name                 | string | null: false |
 | myouji_kana          | string | null: false |
@@ -25,15 +25,16 @@
 | profile             | text       | null: false                    |
 | category_id         | integer    | null: false                    |
 | status_id           | integer    | null: false                    |
-| shippingarea_id    | integer    | null: false                    |
+| shippingarea_id     | integer    | null: false                    |
 | shippingcharges_id  | integer    | null: false                    |
 | daystoship_id       | integer    | null: false                    |
-| price_id            | integer    | null: false                    |
+| price　　　          | text       | null: false                    |
+| user                | references | null: false, foreign_key: true |
 
 
 ### Association
 
-- has_one: user
+- belongs_to: user
 - has_one:purchase
 
 
@@ -41,7 +42,7 @@
 
 | Column           | Type       | Options                        |
 | ------------     | ---------- | ------------------------------ |
-| prefecture       | string     | null: false                    |
+| shippingarea_id  | integer    | null: false                    |
 | municipalities   | string     | null: false                    |
 | address          | string     | null: false                    |
 | building_name    | string     |                                |
@@ -55,6 +56,7 @@
 
 
 
+
 ## purchases テーブル
 
 | Column        | Type       | Options                        |
@@ -65,5 +67,5 @@
 
 ### Association
 
-- has_one :addresses
+- has_one :address
 - belongs_to :user
