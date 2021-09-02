@@ -4,8 +4,8 @@
 
 | Column               | Type   | Options     |
 | ------------------   | ------ | ----------- |
-| email                | string | null: false |
-| encyrpted_password   | string | unique: true|
+| email                | string | unique: true|
+| encyrpted_password   | string | null: false |
 | myouji               | string | null: false |
 | name                 | string | null: false |
 | myouji_kana          | string | null: false |
@@ -26,9 +26,9 @@
 | category_id         | integer    | null: false                    |
 | status_id           | integer    | null: false                    |
 | shippingarea_id     | integer    | null: false                    |
-| shippingcharges_id  | integer    | null: false                    |
+| shippingcharge_id  | integer    | null: false                    |
 | daystoship_id       | integer    | null: false                    |
-| price　　　          | text       | null: false                    |
+| price　　　          | int        | null: false                    |
 | user                | references | null: false, foreign_key: true |
 
 
@@ -68,4 +68,5 @@
 ### Association
 
 - has_one :address
+- has_one :items
 - belongs_to :user
