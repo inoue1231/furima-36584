@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+
   has_one_attached :image
   belongs_to :user
 
@@ -18,4 +19,5 @@ class Item < ApplicationRecord
   validates_inclusion_of :shippingcharge_id, in: 1..2
   validates_inclusion_of :daystoship_id, in: 1..3
   validates_inclusion_of :price, in: 300..9_999_999
+
 end

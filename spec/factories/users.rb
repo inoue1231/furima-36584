@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :user do
+
     nickname              { 'test' }
     email                 { 'test@example.com' }
     password              { 'a123456' }
@@ -11,3 +12,4 @@ FactoryBot.define do
     birth_date            { '1931-01-01' }
   end
 end
+

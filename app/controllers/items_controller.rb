@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+
   before_action :move_to_signed_in, except: [:index]
 
   def index
@@ -27,4 +28,6 @@ class ItemsController < ApplicationController
   def move_to_signed_in
     redirect_to '/users/sign_in' unless user_signed_in?
   end
+
+
 end
