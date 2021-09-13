@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
 
   before_action :move_to_signed_in, except: [:index,:show]
+  before_action :contributor_confirmation, only: [:show,:edit, :update]
+
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -27,6 +29,21 @@ class ItemsController < ApplicationController
     @shippingarea = Shippingarea.find_by_id @item.shippingarea_id
     @daystoship = Daystoship.find_by_id @item.daystoship_id
    end
+   
+   def edit
+   
+  end
+
+  
+    def update
+      
+      if @item.update(item_params)
+        redirect_to item_path(@item)
+      else
+        render :edit
+      end
+    end
+  
 
   private
 
@@ -39,5 +56,8 @@ class ItemsController < ApplicationController
     redirect_to '/users/sign_in' unless user_signed_in?
   end
 
-
+  def contributor_confirmation
+    @item = Item.find(params[:id])
+    redirect_to root_path unless current_user == @item.user
+  end
 end
