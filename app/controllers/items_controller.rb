@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   before_action :move_to_signed_in, except: [:index,:show]
-  before_action :contributor_confirmation, only: [:show,:edit, :update]
+  before_action :contributor_confirmation, only: [:show,:edit, :update,:destroy]
 
 
   def index
@@ -31,18 +31,25 @@ class ItemsController < ApplicationController
    end
    
    def edit
-   
-  end
+   end
 
   
-    def update
-      
+    def update    
       if @item.update(item_params)
         redirect_to item_path(@item)
       else
         render :edit
       end
     end
+
+    def destroy
+      if @item.destroy
+        redirect_to root_path
+      else
+        redirect_to root_path
+      end
+    end
+  
   
 
   private
