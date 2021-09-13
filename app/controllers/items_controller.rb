@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :move_to_signed_in, except: [:index]
+  before_action :move_to_signed_in, except: [:index,:show]
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -18,6 +18,15 @@ class ItemsController < ApplicationController
       render :new
     end
   end
+
+  def show
+    @item = Item.find(params[:id])
+    @shippingcharge = Shippingcharge.find_by_id @item.shippingcharge_id
+    @category = Category.find_by_id @item.category_id
+    @status = Status.find_by_id @item.status_id
+    @shippingarea = Shippingarea.find_by_id @item.shippingarea_id
+    @daystoship = Daystoship.find_by_id @item.daystoship_id
+   end
 
   private
 
