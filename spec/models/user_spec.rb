@@ -87,43 +87,40 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
-       it 'emilには＠マークが無くては登録できない' do
-       @user.email = 'test.com'
-       @user.valid?
-       expect(@user.errors.full_messages).to include('Email is invalid')
-       end
+      it 'emilには＠マークが無くては登録できない' do
+        @user.email = 'test.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Email is invalid')
+      end
 
-       it 'passwordが5文字以下であれば登録できない' do
-       @user.password = 'a1346'
-       @user.password_confirmation = 'a1246'
-       @user.valid?
-       expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
-       end
+      it 'passwordが5文字以下であれば登録できない' do
+        @user.password = 'a1346'
+        @user.password_confirmation = 'a1246'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
+      end
 
-       it 'passwordとpassword_confirmationが不一致では登録できない' do
-       @user.password_confirmation = ''
-       @user.valid?
-       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
-       end
+      it 'passwordとpassword_confirmationが不一致では登録できない' do
+        @user.password_confirmation = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
 
-       it 'passwordが半角英数字でないと登録できない(数字のみ）' do
+      it 'passwordが半角英数字でないと登録できない(数字のみ）' do
         @user.password = '123456'
         @user.password_confirmation = '123456'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password confirmation is invalid')
       end
 
-
-       it 'passwordが半角英数字でないと登録できない(英字のみ）' do
+      it 'passwordが半角英数字でないと登録できない(英字のみ）' do
         @user.password = 'Aaaaaa'
         @user.password_confirmation = 'Aaaaaa'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password confirmation is invalid')
-     end
+      end
 
- 
-
-       it 'passwordを全角文字で入力すると登録できない' do
+      it 'passwordを全角文字で入力すると登録できない' do
         @user.password = '１ｂｂｂｂｂｂ'
         @user.password_confirmation = '１ｂｂｂｂｂｂ'
         @user.valid?
@@ -156,4 +153,3 @@ RSpec.describe User, type: :model do
     end
   end
 end
-

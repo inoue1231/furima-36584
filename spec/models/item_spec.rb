@@ -49,12 +49,6 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Shippingarea is not included in the list')
       end
 
-      it 'shippingcharge_idが空では登録できない' do
-        @item.shippingcharge_id = 0
-        @item.valid?
-        expect(@item.errors.full_messages).to include('Shippingcharge is not included in the list')
-      end
-
       it 'daystoship_idが空では登録できない' do
         @item.daystoship_id = 0
         @item.valid?
@@ -80,20 +74,16 @@ RSpec.describe Item, type: :model do
       end
 
       it 'priceは9999999を超えると保存できない' do
-          @item.price = '99_999_999'
-          @item.valid?
-          expect(@item.errors.full_messages).to include('Price is not included in the list')
+        @item.price = '99_999_999'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
 
       it 'ユーザーが紐づいていないと出品できない' do
         @item.user = nil
         @item.valid?
         expect(@item.errors.full_messages).to include('User must exist')
-       end
-
-    
-
-
+      end
     end
   end
 end
