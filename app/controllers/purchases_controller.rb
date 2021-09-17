@@ -1,4 +1,8 @@
 class PurchasesController < ApplicationController
+
+  before_action :move_to_signed_in
+
+
   def index
     @item = Item.find(params[:item_id])
     @purchases_address = PurchasesAddress.new
@@ -33,4 +37,9 @@ class PurchasesController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def move_to_signed_in
+    redirect_to '/users/sign_in' unless user_signed_in?
+  end
+
 end
