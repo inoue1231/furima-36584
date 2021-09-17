@@ -59,10 +59,17 @@ RSpec.describe PurchasesAddress, type: :model do
       end
 
       it '電話番号が11桁以上では登録できない' do
-        @purchases_address.telephone_number = '090-1111-1111'
+        @purchases_address.telephone_number = '090123456789'
         @purchases_address.valid?
         expect(@purchases_address.errors.full_messages).to include('Telephone number is invalid.')
       end
+
+      it '電話番号が10桁以下では登録できない' do
+        @purchases_address.telephone_number = '08033344'
+        @purchases_address.valid?
+        expect(@purchases_address.errors.full_messages).to include('Telephone number is invalid.')
+      end
+
 
       it '電話番号は半角数字でなくては登録できない' do
         @purchases_address.telephone_number = '１１１２２２２３３３３'
@@ -75,6 +82,22 @@ RSpec.describe PurchasesAddress, type: :model do
         @purchases_address.valid?
         expect(@purchases_address.errors.full_messages).to include("Token can't be blank")
       end
+
+      it 'ユーザーが紐づいていないと登録できない' do
+        @purchases_address.user_id = nil
+        @purchases_address.valid?
+        expect(@purchases_address.errors.full_messages).to include("User can't be blank")
+      end
+
+      it '商品が紐づいていないと登録できない' do
+        @purchases_address.item_id = nil
+        @purchases_address.valid?
+        expect(@purchases_address.errors.full_messages).to include("Item can't be blank")
+      end
+
+
+
+
     end
   end
 end
