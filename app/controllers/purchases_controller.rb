@@ -4,13 +4,16 @@ class PurchasesController < ApplicationController
 
 
   def index
-    @item = Item.find(params[:item_id])
     @purchases_address = PurchasesAddress.new
-    redirect_to root_path unless @item.purchase.present?
+    if @item.purchase.present?
+      redirect_to root_path
+    else
+      render :index
+    end
+    
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchases_address = PurchasesAddress.new(purchases_params)
     if @purchases_address.valid?
       pay_item
@@ -39,6 +42,7 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_signed_in
+    @item = Item.find(params[:item_id])
     redirect_to '/users/sign_in' unless user_signed_in?
   end
 

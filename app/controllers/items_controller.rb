@@ -1,9 +1,11 @@
 class ItemsController < ApplicationController
+  
   before_action :move_to_signed_in, except: [:index, :show]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
 
+
   def index
-    @items = Item.all.order('created_at DESC')
+     @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -26,28 +28,34 @@ class ItemsController < ApplicationController
     @status = Status.find_by_id @item.status_id
     @shippingarea = Shippingarea.find_by_id @item.shippingarea_id
     @daystoship = Daystoship.find_by_id @item.daystoship_id
-  end
-
-  def edit
-    @item = Item.find(params[:id])
-    redirect_to root_path unless @item.purchase.present?
-  end
-
-  def update
-    if @item.update(item_params)
-      redirect_to item_path(@item)
+   end
+   
+   def edit
+    if @item.purchase.present?
+      redirect_to root_path
     else
       render :edit
     end
+    
   end
-
-  def destroy
-    if @item.destroy
-      redirect_to root_path
-    else
-      redirect_to root_path
+  
+    def update    
+      if @item.update(item_params)
+        redirect_to item_path(@item)
+      else
+        render :edit
+      end
     end
-  end
+
+    def destroy
+      if @item.destroy
+        redirect_to root_path
+      else
+        redirect_to root_path
+      end
+    end
+  
+  
 
   private
 
@@ -64,4 +72,5 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     redirect_to root_path unless current_user == @item.user
   end
+  
 end
