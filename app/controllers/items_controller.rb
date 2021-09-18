@@ -1,11 +1,11 @@
 class ItemsController < ApplicationController
-
-  before_action :move_to_signed_in, except: [:index,:show]
-  before_action :contributor_confirmation, only: [:show,:edit, :update,:destroy]
+  
+  before_action :move_to_signed_in, except: [:index, :show]
+  before_action :contributor_confirmation, only: [:edit, :update, :destroy]
 
 
   def index
-    @items = Item.all.order("created_at DESC")
+     @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -31,8 +31,13 @@ class ItemsController < ApplicationController
    end
    
    def edit
-   end
-
+    if @item.purchase.present?
+      redirect_to root_path
+    else
+      render :edit
+    end
+    
+  end
   
     def update    
       if @item.update(item_params)
@@ -67,4 +72,5 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     redirect_to root_path unless current_user == @item.user
   end
+  
 end
