@@ -1,0 +1,35 @@
+ja:
+  activerecord:
+    attributes:
+      item:
+        name: 商品名
+        profile: 商品の説明
+        image: 画像
+        category_id: カテゴリー
+        status_id: 商品の状態
+        shippingarea_id: 発送元の地域
+        shippingcharge_id: 配送料の負担
+        daystoship_id: 配送までの日数
+        price: 金額 
+        
+      user:
+        nickname: ニックネーム
+        myouji: 苗字
+        name: 名前
+        myouji_kana: 苗字(カナ)
+        name_kana: 名前(カナ)
+        birth_date: 生年月日
+
+  activemodel:
+    attributes:
+      purchases_address:
+          address: 番地
+          postal_code: 郵便番号
+          telephone_number: 電話番号
+          municipalities: 市区町村
+          shippingarea_id: 都道府県
+          token: カード情報
+          is invalid. Include hyphen(-): にはハイフンを含んでください
+         
+          
+            
