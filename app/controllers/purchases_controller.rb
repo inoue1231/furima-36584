@@ -1,16 +1,12 @@
 class PurchasesController < ApplicationController
 
   before_action :move_to_signed_in
-
+  before_action :prevent_url, only: [:index, :create]
 
   def index
+  
     @purchases_address = PurchasesAddress.new
-    if @item.purchase.present?
-      redirect_to root_path
-    else
-      render :index
-    end
-    
+ 
   end
 
   def create
@@ -44,6 +40,14 @@ class PurchasesController < ApplicationController
   def move_to_signed_in
     @item = Item.find(params[:item_id])
     redirect_to '/users/sign_in' unless user_signed_in?
+  end
+
+
+  def prevent_url
+    @item = Item.find(params[:item_id])
+    if @item.user_id == current_user.id || @item.purchase != nil
+      redirect_to root_path
+    end
   end
 
 end
